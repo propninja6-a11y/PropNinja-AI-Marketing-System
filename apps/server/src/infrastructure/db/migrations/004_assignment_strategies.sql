@@ -1,0 +1,9 @@
+ALTER TABLE campaign_builders
+  ADD COLUMN IF NOT EXISTS assignment_strategy JSONB NOT NULL DEFAULT to_jsonb('round_robin'::text);
+
+ALTER TABLE users
+  ADD COLUMN IF NOT EXISTS territory TEXT,
+  ADD COLUMN IF NOT EXISTS is_active BOOLEAN NOT NULL DEFAULT TRUE;
+
+ALTER TABLE leads
+  ADD COLUMN IF NOT EXISTS location TEXT;

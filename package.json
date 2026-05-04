@@ -1,0 +1,12 @@
+{
+  "name": "propninja-ai-marketing-system",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["apps/server", "apps/web"],
+  "scripts": {
+    "dev": "npm run dev -w apps/server",
+    "dev:web": "npm run dev -w apps/web",
+    "start": "npm run start -w apps/server",
+    "db:migrate": "npm run db:migrate -w apps/server"
+  }
+}

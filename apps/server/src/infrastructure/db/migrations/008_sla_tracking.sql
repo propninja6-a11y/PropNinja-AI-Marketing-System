@@ -1,0 +1,3 @@
+ALTER TABLE lead_assignments
+  ADD COLUMN IF NOT EXISTS assigned_at TIMESTAMP DEFAULT NOW(),
+  ADD COLUMN IF NOT EXISTS first_contact_at TIMESTAMP;
