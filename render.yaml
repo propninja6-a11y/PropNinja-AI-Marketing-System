@@ -1,0 +1,40 @@
+# Render Blueprint — PropNinja monorepo (apps/server + apps/web)
+# https://render.com/docs/blueprint-spec
+#
+# After apply: set sync:false secrets in the dashboard when prompted.
+# NEXT_PUBLIC_API_URL must be the public API base, e.g. https://propninja-api.onrender.com
+# (use the exact URL shown on your API Web Service in Render).
+
+services:
+  - type: web
+    name: propninja-api
+    runtime: node
+    region: oregon
+    branch: main
+    buildCommand: npm ci && npm run db:migrate -w apps/server
+    startCommand: npm run start -w apps/server
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: WEBHOOK_SECRET
+        generateValue: true
+
+  - type: web
+    name: propninja-web
+    runtime: node
+    region: oregon
+    branch: main
+    buildCommand: npm ci && npm run build -w apps/web
+    startCommand: npm run start -w apps/web
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
