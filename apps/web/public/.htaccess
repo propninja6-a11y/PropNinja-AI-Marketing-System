@@ -1,0 +1,4 @@
+# Minimal rules for Next static `out/` on Apache (GoDaddy cPanel).
+# If you still get HTTP 500, delete this file and any other .htaccess in the same folder.
+
+DirectoryIndex index.html
